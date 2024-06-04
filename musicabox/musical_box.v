@@ -15,10 +15,10 @@ parameter A_sharp_freq = 466;
 parameter C_high_freq = 523;
 
 // Duración de las notas (en ciclos de clock)
-parameter NOTE_DURATION = 12000000;  // Ajustar según sea necesario
+parameter NOTE_DURATION = 12000;  // Ajustar según sea necesario
 
 // Estados para la FSM
-parameter S_C1 = 4'b0000, S_C2 = 4'b0001, S_D1 = 4'b0010, S_C3 = 4'b0011, S_F1 = 4'b0100, S_E1 = 4'b0101,
+localparam [5:0] S_C1 = 4'b0000, S_C2 = 4'b0001, S_D1 = 4'b0010, S_C3 = 4'b0011, S_F1 = 4'b0100, S_E1 = 4'b0101,
           S_C4 = 4'b0110, S_C5 = 4'b0111, S_D2 = 4'b1000, S_C6 = 4'b1001, S_G1 = 4'b1010, S_F2 = 4'b1011,
           S_C7 = 4'b1100, S_C8 = 4'b1101, S_C9 = 4'b1110, S_A1 = 4'b1111, S_F3 = 5'b10000, S_E2 = 5'b10001, S_D3 = 5'b10010,
           S_A_SHARP1 = 5'b10011, S_A_SHARP2 = 5'b10100, S_A_SHARP3 = 5'b10101, S_F4 = 5'b10110, S_G2 = 5'b10111, S_F5 = 5'b11000;
