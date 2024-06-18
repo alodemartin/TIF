@@ -14,23 +14,23 @@ parameter B_freq  = 494;
 parameter A_sharp_freq = 466;
 parameter C_high_freq = 523;
 
-// Duración de las notas (en ciclos de clock)
-parameter NOTE_DURATION = 12000;  // Ajustar según sea necesario
+// Duración de las notas (en ciclos de clk)
+parameter NOTE_DURATION = 120000;
 
 // Estados para la FSM
-localparam [5:0] S_C1 = 4'b0000, S_C2 = 4'b0001, S_D1 = 4'b0010, S_C3 = 4'b0011, S_F1 = 4'b0100, S_E1 = 4'b0101,
-          S_C4 = 4'b0110, S_C5 = 4'b0111, S_D2 = 4'b1000, S_C6 = 4'b1001, S_G1 = 4'b1010, S_F2 = 4'b1011,
-          S_C7 = 4'b1100, S_C8 = 4'b1101, S_C9 = 4'b1110, S_A1 = 4'b1111, S_F3 = 5'b10000, S_E2 = 5'b10001, S_D3 = 5'b10010,
+localparam [4:0] S_C1 = 5'b00000, S_C2 = 5'b00010, S_D1 = 5'b00100, S_C3 = 5'b00110, S_F1 = 5'b01000, S_E1 = 5'b01010,
+          S_C4 = 5'b01100, S_C5 = 5'b01110, S_D2 = 5'b10000, S_C6 = 5'b10010, S_G1 = 5'b10100, S_F2 = 5'b10110,
+          S_C7 = 5'b11000, S_C8 = 5'b11010, S_C9 = 5'b11100, S_A1 = 5'b11110, S_F3 = 5'b10000, S_E2 = 5'b10001, S_D3 = 5'b10010,
           S_A_SHARP1 = 5'b10011, S_A_SHARP2 = 5'b10100, S_A_SHARP3 = 5'b10101, S_F4 = 5'b10110, S_G2 = 5'b10111, S_F5 = 5'b11000;
 
 reg [4:0] state, next_state;
 
 // Contador de tiempo
-reg [23:0] time_counter;
+reg [16:0] time_counter; //con [15:0] no anda
 
 // Contador de frecuencia
 reg [15:0] freq_counter;
-reg freq_toggle;
+reg freq_toggle; //funciona similar a una palanca 
 
 // Asignación de frecuencia según el estado
 reg [15:0] freq_divider;
@@ -68,7 +68,8 @@ always @(posedge clk) begin
     speaker <= freq_toggle;
 end
 
-// Control del tiempo y FSM
+// Control para que la nota no se pase de duracion 
+// y FSM
 always @(posedge clk) begin
     if (time_counter >= NOTE_DURATION) begin
         time_counter <= 0;
@@ -111,9 +112,11 @@ always @(*) begin
 end
 
 // Inicialización de estados
+// para asegurar que todo inicie correctamente
+// principalmente FSM
 initial begin
     state = S_C1;
-    next_state = S_C1;
+    next_state = S_C2;
     time_counter = 0;
     freq_counter = 0;
     freq_toggle = 0;

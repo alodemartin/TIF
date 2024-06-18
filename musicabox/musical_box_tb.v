@@ -1,5 +1,6 @@
 `default_nettype none
 `define DUMPSTR(x) `"x.vcd`"
+`timescale 100 ns / 10 ns
 
 module musical_box_tb;
 
@@ -13,7 +14,7 @@ musical_box uut (
 );
 
 // Generación de un clock de 12 MHz
-always #41.67 clk = ~clk;  // 1 / (12 MHz) = 83.34 ns, half-period = 41.67 ns
+always #41.67 clk = ~clk;  // 1 / (12 MHz) = 83.34 ns, medio-periodo = 41.67 ns
 
 initial begin
     $dumpfile(`DUMPSTR(`VCD_OUTPUT));
@@ -22,7 +23,7 @@ initial begin
     // Inicialización
     clk = 0;
     // Simulación por un tiempo suficiente para cubrir la secuencia completa
-    #240000000;  // Ajustar según sea necesario
+    #1200000000;  // Ajustar según sea necesario
     $stop;
 end
 

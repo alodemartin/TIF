@@ -1,0 +1,20 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Tue Jun 11 02:52:37 2024
+[*]
+[dumpfile] "C:\Users\franc\Desktop\prueba\musicabox\musical_box_tb.vcd"
+[dumpfile_mtime] "Tue Jun 11 02:52:24 2024"
+[dumpfile_size] 201201744
+[savefile] "C:\Users\franc\Desktop\prueba\musicabox\musical_box_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-42.714745 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 86
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+musical_box_tb.speaker
+[pattern_trace] 1
+[pattern_trace] 0
